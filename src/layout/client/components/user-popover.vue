@@ -57,9 +57,7 @@ const selectGroup: ISelectGroup = [
             <router-link to="/user/home" custom v-slot="{ navigate }">
                 <n-image class="avatar" :src="testAvatar" preview-disabled :img-props="{ draggable: false }" @click="navigate"/>
             </router-link>
-            <router-link class="user-name" to="/user/home" custom v-slot="{ navigate }">
-                <p @click="navigate">username</p>
-            </router-link>
+            <router-link class="user-name" to="/user/home">username</router-link>
             <p class="user-email">mari.lolicon@loli.con</p>
         </header>
         <ul class="select-group">
@@ -100,6 +98,7 @@ const selectGroup: ISelectGroup = [
         }
 
         .user-name {
+            display: block;
             font-weight: 700;
             cursor: pointer;
         }

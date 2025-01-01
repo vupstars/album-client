@@ -19,7 +19,9 @@ const searchTheme: GlobalThemeOverrides["Input"] = {
 <template>
     <div class="client-layout">
         <header>
-            <div class="logo">{{ config.LOGO_TEXT }}</div>
+            <router-link to="/" custom v-slot="{ navigate }">
+                <div class="logo" @click="navigate">{{ config.LOGO_TEXT }}</div>
+            </router-link>
             <top-search :theme="searchTheme" placeholder="搜索作品" />
             <div class="right-content">
                 <router-link to="/work/create" custom v-slot="{ navigate }">
@@ -61,6 +63,8 @@ header {
     background-color: #fff;
 
     .logo {
+        user-select: none;
+        cursor: pointer;
         font-size: 28px;
         color: #0096fa;
     }
