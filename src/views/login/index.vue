@@ -16,7 +16,7 @@
 
 <script lang="ts" setup>
 import BgCarousel from "./components/bg-carousel.vue";
-import TopSearch from "./components/top-search.vue";
+import TopSearch from "../../components/top-search/index.vue";
 import { ref } from "vue";
 import Login from "./login.vue";
 import Register from "./register.vue";
@@ -69,8 +69,8 @@ main {
         color: #fff;
     }
 
-    .n-config-provider {
-        flex: 1;
+    :deep(.top-search) {
+        width: 500px;
     }
 }
 

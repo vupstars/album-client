@@ -36,7 +36,7 @@ const themeOverrides: GlobalThemeOverrides = {
             <h3 class="box-logo">{{ config.LOGO_TEXT }}</h3>
             <p class="box-title">{{ title }}</p>
         </header>
-        <n-config-provider :theme-overrides="themeOverrides">
+        <n-config-provider :theme-overrides="themeOverrides" inline-theme-disabled abstract>
             <slot />
         </n-config-provider>
         <footer class="box-footer">

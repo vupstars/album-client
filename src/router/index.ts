@@ -4,12 +4,18 @@ import {
 } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 
+const clientLayout = () => import( "@/layout/client/index.vue" );
+
 const routes: RouteRecordRaw[] = [
 	{
 		path: "/",
-		name: "Home",
-		meta: { title: "首页" },
-		component: () => import( "@/views/home/index.vue" )
+		component: clientLayout,
+		children: [ {
+			path: "/",
+			name: "Home",
+			meta: { title: "首页" },
+			component: () => import( "@/views/home/index.vue" )
+		} ]
 	},
 	{
 		path: "/login",
