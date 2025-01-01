@@ -17,36 +17,43 @@ const searchTheme: GlobalThemeOverrides["Input"] = {
 </script>
 
 <template>
-    <header>
-        <div class="logo">{{ config.LOGO_TEXT }}</div>
-        <top-search :theme="searchTheme" placeholder="搜索作品" />
-        <div class="right-content">
-            <router-link to="/work/create" custom v-slot="{ navigate }">
-                <n-button class="submit-work" secondary round @click="navigate">投稿作品</n-button>
-            </router-link>
-            <div class="user-box">
-                <n-popover v-if="isLogin" trigger="click" width="200px" raw :show-arrow="false">
-                    <template #trigger>
-                        <n-image class="avatar" :src="testAvatar" preview-disabled title="username" />
-                    </template>
-                    <user-popover />
-                </n-popover>
-                <router-link v-else class="to-login" to="/login">登陆</router-link>
+    <div class="client-layout">
+        <header>
+            <div class="logo">{{ config.LOGO_TEXT }}</div>
+            <top-search :theme="searchTheme" placeholder="搜索作品" />
+            <div class="right-content">
+                <router-link to="/work/create" custom v-slot="{ navigate }">
+                    <n-button class="submit-work" secondary round @click="navigate">投稿作品</n-button>
+                </router-link>
+                <div class="user-box">
+                    <n-popover v-if="isLogin" trigger="click" width="200px" raw :show-arrow="false">
+                        <template #trigger>
+                            <n-image class="avatar" :src="testAvatar" preview-disabled title="username" />
+                        </template>
+                        <user-popover />
+                    </n-popover>
+                    <router-link v-else class="to-login" to="/login">登陆</router-link>
+                </div>
             </div>
-        </div>
-    </header>
-    <main>
-        <n-scrollbar>
-            <router-view />
-        </n-scrollbar>
-    </main>
+        </header>
+        <main>
+            <n-scrollbar>
+                <router-view />
+            </n-scrollbar>
+        </main>
+    </div>
 </template>
 
 <style scoped lang="scss">
+.client-layout {
+    height: 100%;
+    min-width: 1200px;
+    transform: translateX(0);
+}
+
 header {
     position: fixed;
     inset: 0 0 auto;
-
     display: grid;
     align-items: center;
     grid-template-columns: 1fr minmax(0px, 528px) 1fr;
