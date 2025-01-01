@@ -15,6 +15,11 @@ const routes: RouteRecordRaw[] = [
 			name: "Home",
 			meta: { title: "首页" },
 			component: () => import( "@/views/home/index.vue" )
+		}, {
+			path: "/artwork/:id",
+			name: "WorkDetail",
+			meta: { title: "插画详情" },
+			component: () => import( "@/views/work-detail/index.vue" )
 		} ]
 	},
 	{

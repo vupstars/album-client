@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TopSearch from "@/components/top-search/index.vue";
-import { NButton, NImage, NPopover, NScrollbar, type GlobalThemeOverrides } from "naive-ui";
+import { NButton, NImage, NPopover, type GlobalThemeOverrides } from "naive-ui";
 import config from "@/config";
 import testAvatar from "@/assets/image/avatar.jpg";
 import UserPopover from "./components/user-popover.vue";
@@ -37,9 +37,7 @@ const searchTheme: GlobalThemeOverrides["Input"] = {
             </div>
         </header>
         <main>
-            <n-scrollbar>
-                <router-view />
-            </n-scrollbar>
+            <router-view />
         </main>
     </div>
 </template>
