@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { NInput, NConfigProvider, NIcon, type GlobalThemeOverrides } from "naive-ui";
 import { Search } from '@vicons/ionicons5'
-import { computed, ref } from "vue";
-import { useRouter } from "vue-router";
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 const props = withDefaults( defineProps<{
     theme?: GlobalThemeOverrides["Input"],
@@ -27,8 +27,16 @@ const themeOverrides = computed<GlobalThemeOverrides>( () => {
     };
 } );
 
+const route = useRoute();
 const router = useRouter();
+
 const searchValue = ref<string>( "" );
+
+watch( () => route.params.tag, tag => {
+    if ( !tag ) return;
+    searchValue.value = tag;
+}, { immediate: true } );
+
 
 function toSearchResultPage() {
     router.push( {

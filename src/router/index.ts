@@ -20,6 +20,11 @@ const routes: RouteRecordRaw[] = [
 			name: "WorkDetail",
 			meta: { title: "插画详情" },
 			component: () => import( "@/views/work-detail/index.vue" )
+		}, {
+			path: "/tag/:tag",
+			name: "Tag",
+			meta: { title: "标签" },
+			component: () => import( "@/views/tag/index.vue" )
 		} ]
 	},
 	{
