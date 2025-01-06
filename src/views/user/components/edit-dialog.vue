@@ -28,7 +28,6 @@ const formRef = ref<NForm | null>( null );
 async function updateUserInfo( cancel: () => void ) {
     const validate = await formValidate( formRef.value );
     if ( !validate ) {
-        cancel();
         return;
     }
 
@@ -39,6 +38,7 @@ async function updateUserInfo( cancel: () => void ) {
             setTimeout( resolve, 3000 );
         } );
         // 更新 pinia 中的用户信息
+        show.value = false;
     } catch ( error ) {
         cancel();
     } finally {

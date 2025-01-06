@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NModal, NIcon, NButton } from "naive-ui";
-import { computed } from "vue";
+import { computed, nextTick } from "vue";
 import { Close } from "@vicons/ionicons5";
 
 const props = withDefaults( defineProps<{
@@ -25,16 +25,8 @@ const baseStyle = computed( () => {
     }
 } );
 
-let canClose = true;
-function confirm() {
-    emits( "confirm", () => {
-        canClose = false;
-    } );
-    if ( canClose ) {
-        show.value = false;
-    } else {
-        canClose = true;
-    }
+async function confirm() {
+    emits( "confirm" );
 }
 
 </script>
