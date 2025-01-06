@@ -48,7 +48,7 @@ async function updateUserInfo( cancel: () => void ) {
 </script>
 
 <template>
-    <common-dialog v-model:show="show" custom-class="edit-dialog" title="编辑个人资料" @confirm="updateUserInfo">
+    <common-dialog v-model:show="show" custom-class="edit-dialog" title="编辑个人资料" @confirm="updateUserInfo" :loading>
         <n-form ref="formRef" :model="formData" :rules="formRules">
             <n-form-item path="avatar" label="个人头像">
                 <avatar-upload v-model:src="curAvatar" />

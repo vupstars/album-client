@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { NModal, NIcon, NButton } from "naive-ui";
-import { computed, nextTick } from "vue";
+import { NModal, NIcon, NButton, NSpin } from "naive-ui";
+import { computed } from "vue";
 import { Close } from "@vicons/ionicons5";
 
 const props = withDefaults( defineProps<{
     title: string;
     width?: number | string;
     customClass?: string;
+    loading?: boolean;
 }>(), {
     title: "",
-    width: "50%"
+    width: "50%",
+    loading: false
 } );
 
 const emits = defineEmits<{
@@ -33,7 +35,7 @@ async function confirm() {
 
 <template>
     <n-modal v-model:show="show">
-        <div class="edit-dialog" :class="[customClass]" :style="baseStyle">
+        <n-spin :show="loading" class="edit-dialog" :class="[customClass]" :style="baseStyle">
             <header class="dialog-header">
                 <h3 class="dialog-title overflow-ellipsis">{{ title }}</h3>
                 <n-icon class="dialog-close" size="24" color="#adadad" @click="show = false">
@@ -47,7 +49,7 @@ async function confirm() {
                 <n-button type="info" round @click="confirm">确定</n-button>
                 <n-button secondary round @click="show = false">取消</n-button>
             </footer>
-        </div>
+        </n-spin>
     </n-modal>
 </template>
 
