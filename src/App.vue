@@ -21,6 +21,9 @@ const themeGlobal: GlobalThemeOverrides = {
         borderHoverError: "none",
         boxShadowFocus: "0 0 0 4px rgba(0, 150, 250, 0.2)",
         boxShadowFocusError: "0 0 0 4px rgba(255, 43, 0, 0.32)"
+    },
+    Spin: {
+        color: "#0096fa"
     }
 };
 </script>
