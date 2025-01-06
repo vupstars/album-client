@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import testAvatar from "@/assets/image/avatar.jpg";
-import { NImage } from "naive-ui";
+import { NImage, NPopover } from "naive-ui";
+
+const show = defineModel( "show" );
 
 interface ISelectGroup {
     name: string;
@@ -43,31 +45,51 @@ const selectGroup: ISelectGroup = [
             }
         ]
     }
-]
+];
+
+function selectClick( handle: () => void ) {
+    handle();
+    show.value = false;
+}
 </script>
 
 <template>
-    <div class="user-popover">
-        <header class="user-info">
-            <router-link to="/user/home" custom v-slot="{ navigate }">
-                <n-image class="avatar" :src="testAvatar" preview-disabled :img-props="{ draggable: false }" @click="navigate"/>
-            </router-link>
-            <router-link class="user-name" to="/user/home">username</router-link>
-            <p class="user-email">mari.lolicon@loli.con</p>
-        </header>
-        <ul class="select-group">
-            <li v-for="group of selectGroup">
-                <p v-if="group.name" class="group-title">{{ group.name }}</p>
-                <template v-for="item of group.children">
-                    <router-link v-if="item.type === 'link'" class="group-child" :to="item.handle">{{ item.name }}</router-link>
-                    <p v-else class="group-child" @click="item.handle">{{ item.name }}</p>
-                </template>
-            </li>
-        </ul>
-    </div>
+    <n-popover v-model:show="show" trigger="click" width="200px" raw :show-arrow="false">
+        <template #trigger>
+            <n-image class="trigger-avatar" :src="testAvatar" preview-disabled title="username" />
+        </template>
+        <div class="user-popover">
+            <header class="user-info">
+                <router-link to="/user/home" custom v-slot="{ navigate }">
+                    <n-image class="avatar" :src="testAvatar" preview-disabled :img-props="{ draggable: false }"
+                             @click="selectClick(navigate)" />
+                </router-link>
+                <router-link class="user-name" to="/user/home" @click="show = false">username</router-link>
+                <p class="user-email">mari.lolicon@loli.con</p>
+            </header>
+            <ul class="select-group">
+                <li v-for="group of selectGroup">
+                    <p v-if="group.name" class="group-title">{{ group.name }}</p>
+                    <template v-for="item of group.children">
+                        <router-link v-if="item.type === 'link'" class="group-child" :to="item.handle"
+                                     @click="show = false">{{ item.name }}
+                        </router-link>
+                        <p v-else class="group-child" @click="selectClick(item.handle)">{{ item.name }}</p>
+                    </template>
+                </li>
+            </ul>
+        </div>
+    </n-popover>
 </template>
 
 <style scoped lang="scss">
+.trigger-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .user-popover {
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 8px;

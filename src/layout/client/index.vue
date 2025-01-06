@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import TopSearch from "@/components/top-search/index.vue";
-import { NButton, NImage, NPopover } from "naive-ui";
+import { NButton } from "naive-ui";
 import config from "@/config";
-import testAvatar from "@/assets/image/avatar.jpg";
 import UserPopover from "./components/user-popover.vue";
 import { ref } from "vue";
 
 const isLogin = ref( true );
+const showPopover = ref( false );
 </script>
 
 <template>
@@ -21,12 +21,7 @@ const isLogin = ref( true );
                     <n-button class="submit-work" secondary round @click="navigate">投稿作品</n-button>
                 </router-link>
                 <div class="user-box">
-                    <n-popover v-if="isLogin" trigger="click" width="200px" raw :show-arrow="false">
-                        <template #trigger>
-                            <n-image class="avatar" :src="testAvatar" preview-disabled title="username" />
-                        </template>
-                        <user-popover />
-                    </n-popover>
+                    <user-popover v-if="isLogin" v-model:show="showPopover" />
                     <router-link v-else class="to-login" to="/login">登陆</router-link>
                 </div>
             </div>
@@ -82,7 +77,7 @@ main {
 
     .user-box {
         line-height: 0;
-        .avatar,
+
         .to-login {
             width: 40px;
             height: 40px;
