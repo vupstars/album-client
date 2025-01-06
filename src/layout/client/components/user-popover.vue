@@ -21,13 +21,8 @@ const selectGroup: ISelectGroup = [
         children: [
             {
                 type: "link",
-                name: "个人中心",
+                name: "个人主页",
                 handle: "/user/home"
-            },
-            {
-                type: "link",
-                name: "我的作品",
-                handle: "/user/works"
             }
         ]
     },

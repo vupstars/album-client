@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import TopSearch from "@/components/top-search/index.vue";
-import { NButton, NImage, NPopover, type GlobalThemeOverrides } from "naive-ui";
+import { NButton, NImage, NPopover } from "naive-ui";
 import config from "@/config";
 import testAvatar from "@/assets/image/avatar.jpg";
 import UserPopover from "./components/user-popover.vue";
 import { ref } from "vue";
 
 const isLogin = ref( true );
-
-const searchTheme: GlobalThemeOverrides["Input"] = {
-    color: "rgba(0, 0, 0, 0.04)",
-    colorFocus: "rgba(0, 0, 0, 0.04)",
-    heightMedium: "40px",
-    boxShadowFocus: "0 0 0 4px rgba(0, 150, 250, 0.2)"
-};
 </script>
 
 <template>
@@ -22,7 +15,7 @@ const searchTheme: GlobalThemeOverrides["Input"] = {
             <router-link to="/" custom v-slot="{ navigate }">
                 <div class="logo" @click="navigate">{{ config.LOGO_TEXT }}</div>
             </router-link>
-            <top-search :theme="searchTheme" placeholder="搜索作品" />
+            <top-search placeholder="搜索作品" />
             <div class="right-content">
                 <router-link to="/work/create" custom v-slot="{ navigate }">
                     <n-button class="submit-work" secondary round @click="navigate">投稿作品</n-button>

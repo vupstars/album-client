@@ -25,6 +25,11 @@ const routes: RouteRecordRaw[] = [
 			name: "Tag",
 			meta: { title: "标签" },
 			component: () => import( "@/views/tag/index.vue" )
+		}, {
+			path: "/user/:id",
+			name: "UserHome",
+			meta: { title: "个人主页" },
+			component: () => import( "@/views/user/index.vue" )
 		} ]
 	},
 	{

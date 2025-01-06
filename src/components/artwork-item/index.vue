@@ -15,12 +15,12 @@ import testAvatar from "@/assets/image/avatar.jpg";
                     @click="navigate"
             ></n-image>
         </router-link>
-        <router-link class="title" to="/artwork/114514">汐之宫 璃贝</router-link>
+        <router-link class="title overflow-ellipsis" to="/artwork/114514">汐之宫 璃贝</router-link>
         <aside class="author">
             <router-link to="/user/home" custom v-slot="{ navigate }">
                 <n-image class="avatar" :src="testAvatar" preview-disabled :img-props="{ draggable: false }" @click="navigate"/>
             </router-link>
-            <router-link class="name" to="/user/home">username</router-link>
+            <router-link class="name overflow-ellipsis" to="/user/home">username</router-link>
         </aside>
     </section>
 </template>
@@ -46,9 +46,6 @@ import testAvatar from "@/assets/image/avatar.jpg";
 
     .title {
         display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         line-height: 22px;
         font-size: 14px;
         font-weight: bold;
@@ -69,12 +66,9 @@ import testAvatar from "@/assets/image/avatar.jpg";
 
         .name {
             min-width: 0;
-            overflow: hidden;
             line-height: 22px;
             font-size: 14px;
             color: #474747;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
     }
 }
