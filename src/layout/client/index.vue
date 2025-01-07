@@ -17,7 +17,7 @@ const showPopover = ref( false );
             </router-link>
             <top-search placeholder="搜索作品" />
             <div class="right-content">
-                <router-link to="/work/create" custom v-slot="{ navigate }">
+                <router-link to="/artwork/create" custom v-slot="{ navigate }">
                     <n-button class="submit-work" secondary round @click="navigate">投稿作品</n-button>
                 </router-link>
                 <div class="user-box">
