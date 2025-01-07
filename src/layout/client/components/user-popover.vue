@@ -2,7 +2,7 @@
 import testAvatar from "@/assets/image/avatar.jpg";
 import { NImage, NPopover } from "naive-ui";
 
-const show = defineModel( "show" );
+const show = defineModel<boolean>( "show", { required: true } );
 
 interface ISelectGroup {
     name: string;
@@ -17,7 +17,7 @@ interface ISelectGroup {
     }>;
 }
 
-const selectGroup: ISelectGroup = [
+const selectGroup: ISelectGroup[] = [
     {
         name: "",
         children: [
@@ -31,11 +31,11 @@ const selectGroup: ISelectGroup = [
     {
         name: "Account",
         children: [
-            {
-                type: "link",
-                name: "设置",
-                handle: "/user/setting"
-            },
+            // {
+            //     type: "link",
+            //     name: "设置",
+            //     handle: "/user/setting"
+            // },
             {
                 type: "button",
                 name: "退出登录",
@@ -54,7 +54,7 @@ function selectClick( handle: () => void ) {
 </script>
 
 <template>
-    <n-popover v-model:show="show" trigger="click" width="200px" raw :show-arrow="false">
+    <n-popover v-model:show="show" trigger="click" :width="200" raw :show-arrow="false">
         <template #trigger>
             <n-image class="trigger-avatar" :src="testAvatar" preview-disabled title="username" />
         </template>

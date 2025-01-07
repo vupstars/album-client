@@ -2,7 +2,7 @@
 import { NButton, NInput } from "naive-ui";
 import { computed, ref } from "vue";
 
-const modelValue = defineModel<string>( "value" );
+const modelValue = defineModel<string>( "value", { required: true } );
 
 const props = withDefaults( defineProps<{
     disabled: boolean;

@@ -26,7 +26,7 @@ async function searchData() {
     loading.value = true;
     await new Promise( resolve => setTimeout( resolve, 3000 ) );
     const randomLength = Math.floor( Math.random() * 30 ) + 5;
-    artworkList.value = Array.from( { length: randomLength }, ( _, index ) => index );
+    artworkList.value = <any>Array.from( { length: randomLength }, ( _, index ) => index );
     console.log( `搜索了: [${ [ "按新", "按旧" ][curState.value] }][${ curTag.value }]` );
     loading.value = false;
 }

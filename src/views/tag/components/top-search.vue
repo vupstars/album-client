@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const curState = defineModel<number>();
+const curState = defineModel<number>( { required: true } );
 
 const searchBtnList = [
     {

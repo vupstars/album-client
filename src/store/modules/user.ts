@@ -7,7 +7,7 @@ export const useUserStore = defineStore( "user", () => {
 			throw new Error( "账号或密码不可为空" );
 		}
 		try {
-			const res = await new Promise( resolve => {
+			const res: any = await new Promise( resolve => {
 				setTimeout( () => {
 					resolve( { data: "token114514" } );
 				}, 3000 )

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { type FormRules, NForm, NFormItem, NInput } from "naive-ui";
+import { type FormRules, type FormInst, NForm, NFormItem, NInput } from "naive-ui";
 import CommonDialog from "@/components/common-dialog/index.vue";
 import AvatarUpload from "./avatar-upload.vue";
 import testAvatar from "@/assets/image/avatar.jpg";
 import { formValidate } from "@/utils/formValidate.ts";
 
-const show = defineModel( "show" );
+const show = defineModel<boolean>( "show", { required: true } );
 const curAvatar = ref( testAvatar );
-const formData = ref( {} );
+const formData = ref<Record<string, any>>( {} );
 
 const formRules: FormRules = {
     nickname: {
@@ -23,9 +23,9 @@ const formRules: FormRules = {
 };
 
 const loading = ref( false );
-const formRef = ref<NForm | null>( null );
+const formRef = ref<FormInst | null>( null );
 
-async function updateUserInfo( cancel: () => void ) {
+async function updateUserInfo() {
     const validate = await formValidate( formRef.value );
     if ( !validate ) {
         return;
@@ -40,7 +40,6 @@ async function updateUserInfo( cancel: () => void ) {
         // 更新 pinia 中的用户信息
         show.value = false;
     } catch ( error ) {
-        cancel();
     } finally {
         loading.value = false;
     }

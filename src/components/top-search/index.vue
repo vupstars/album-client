@@ -17,7 +17,7 @@ const searchValue = ref<string>( "" );
 
 watch( () => route.params.tag, tag => {
     if ( !tag ) return;
-    searchValue.value = tag;
+    searchValue.value = <string>tag;
 }, { immediate: true } );
 
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMessage } from "naive-ui";
-import { computed, onBeforeUnmount, ref } from "vue";
+import { computed, onBeforeUnmount, type Ref, ref } from "vue";
 
 defineSlots<{
     trigger( props: {
@@ -9,15 +9,15 @@ defineSlots<{
     } ): any;
 }>();
 
-const src = defineModel( "src" );
+const src = defineModel<string>( "src", { required: true } );
 
 const props = withDefaults( defineProps<{
     // 单位 MB
     sizeLimit?: number;
-    accept?: string | [];
+    accept?: string | string[];
 }>(), {
     sizeLimit: 2,
-    accept: [ ".png", ".jpg", ".jpeg" ]
+    accept: () => [ ".png", ".jpg", ".jpeg" ]
 } );
 
 const fileAccept = computed( () => {
@@ -36,7 +36,8 @@ function openUpload() {
 }
 
 function handleUpload( event: Event ) {
-    const file: File = event.target.files?.[0];
+    // @ts-ignore
+    const file: File = event.target?.files?.[0];
     if ( !file ) return;
 
     if ( file.size >= 2 * 1024 * 1024 ) {
@@ -51,14 +52,14 @@ function handleUpload( event: Event ) {
 
     const tempUrl = createBlob( file );
     message.success( "上传成功" );
-    src.value = tempUrl;
+    src.value = <any>tempUrl;
 }
 
-const blobList: Blob[] = [];
+const blobList: string[] = [];
 
 function createBlob( file: File ) {
     const url = URL.createObjectURL( file );
-    blobList.push( file );
+    blobList.push( url );
     return url;
 }
 

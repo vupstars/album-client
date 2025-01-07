@@ -15,10 +15,10 @@ const props = withDefaults( defineProps<{
 } );
 
 const emits = defineEmits<{
-    confirm: [ cancel: () => void ];
+    confirm: [];
 }>();
 
-const show = defineModel( "show" );
+const show = defineModel<boolean>( "show", { required: true } );
 
 const baseStyle = computed( () => {
     const width = props.width;

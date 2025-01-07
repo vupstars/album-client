@@ -14,7 +14,7 @@ withDefaults( defineProps<{
     loading: false
 } );
 
-const curPage = defineModel<number>( "page" );
+const curPage = defineModel<number>( "page", { required: true } );
 </script>
 
 <template>

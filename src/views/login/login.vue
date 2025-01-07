@@ -28,7 +28,7 @@ async function loginByPassword() {
         const redirectPath = <string | undefined>route.query?.redirect;
         await router.push( redirectPath ? { path: redirectPath } : { name: "Home" } );
     } catch ( error ) {
-        errorMsg.value = error.message;
+        errorMsg.value = ( <Error>error ).message;
     } finally {
         loading.value = false;
     }

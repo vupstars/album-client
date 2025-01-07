@@ -4,9 +4,9 @@ import * as path from "path";
 
 // https://vite.dev/config/
 export default ( { mode }: ConfigEnv ) => {
-	const env = loadEnv( mode, process.cwd() )
+	const env = loadEnv( mode, process.cwd() );
 	return defineConfig( {
-		base: env.VITE_PUBLIC_PATH,
+		base: env.VITE_BASE_URL,
 		plugins: [ vue() ],
 		resolve: {
 			alias: {

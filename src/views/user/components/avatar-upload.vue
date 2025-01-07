@@ -6,14 +6,15 @@ import { onBeforeUnmount, ref } from "vue";
 const message = useMessage();
 const uploadEl = ref<HTMLInputElement | null>( null );
 
-const src = defineModel( "src" );
+const src = defineModel<string>( "src", { required: true } );
 
 function openUpload() {
     uploadEl.value?.click();
 }
 
 function handleUpload( event: Event ) {
-    const file: File = event.target.files?.[0];
+    // @ts-ignore
+    const file: File = event.target?.files?.[0];
     if ( !file ) return;
 
     if ( file.size >= 2 * 1024 * 1024 ) {
@@ -28,13 +29,14 @@ function handleUpload( event: Event ) {
 
     const tempUrl = createBlob( file );
     message.success( "上传成功" );
+    // @ts-ignore
     src.value = tempUrl;
 }
 
-const blobList: Blob[] = [];
+const blobList: string[] = [];
 function createBlob( file: File ) {
     const url = URL.createObjectURL( file );
-    blobList.push( file );
+    blobList.push( url );
     return url;
 }
 
@@ -44,7 +46,7 @@ onBeforeUnmount( () => {
 </script>
 
 <template>
-    <div class="avatar-upload" @click="clipDialogState = true">
+    <div class="avatar-upload">
         <n-image :src preview-disabled object-fit="cover" :img-props="{ draggable: false }" />
         <div class="edit-icon" @click="openUpload">
             <n-icon color="#fff" size="24">
