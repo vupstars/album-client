@@ -1,6 +1,7 @@
 import {
 	createRouter,
-	createWebHistory
+	createWebHistory,
+	createWebHashHistory
 } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 
@@ -46,8 +47,11 @@ const routes: RouteRecordRaw[] = [
 	}
 ];
 
+/* github pages 页面无法配置 404 跳转，改用 hash 模式 */
+const createRouterHistory = import.meta.env.MODE === "github" ? createWebHashHistory : createWebHistory;
+
 const index = createRouter( {
-	history: createWebHistory( import.meta.env.VITE_BASE_URL ),
+	history: createRouterHistory( import.meta.env.VITE_BASE_URL ),
 	routes
 } );
 
